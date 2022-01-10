@@ -5,8 +5,7 @@
  */
 package br.com.alura.leilao.login;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import br.com.alura.leilao.leiloes.LeiloesPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -16,12 +15,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- *
  * @author 99030499
  */
-class LoginPage {
+public class LoginPage {
 
-    private static final String URL_LOGIN = "http://localhost:8080/login";
+    private static final String URL_LOGIN = "http://localhost:8081/login";
 
     private WebDriver browser;
     private WebElement wait;
@@ -41,12 +39,9 @@ class LoginPage {
         browser.findElement(By.id("password")).sendKeys(password);
     }
 
-    public void efetuarLogin() {
-        browser.findElement(By.id("login-form")).submit();
-    }
-
-    public void getWaitTimeInId(String id) {
-        wait = (new WebDriverWait(browser, 100)).until(ExpectedConditions.elementToBeClickable(By.id(id)));
+    public WebDriver efetuarLogin() {
+        browser.findElement(By.id("submit")).submit();
+        return browser;
     }
 
     public String getUsuarioLogado() {
@@ -70,7 +65,15 @@ class LoginPage {
     }
 
     void setPageDeLance(int i) {
-        this.browser.navigate().to("http://localhost:8080/leiloes/" + i);
+        this.browser.navigate().to("http://localhost:8081/leiloes/" + i);
     }
 
+    public void getWaitTimeInId(String id) {
+        wait = (new WebDriverWait(browser, 100)).until(ExpectedConditions.elementToBeClickable(By.id(id)));
+    }
+
+    public void getWaitLoadPage() throws InterruptedException {
+//        browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        
+    }
 }

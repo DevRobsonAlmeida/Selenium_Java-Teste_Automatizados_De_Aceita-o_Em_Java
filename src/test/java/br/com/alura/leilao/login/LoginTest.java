@@ -7,13 +7,8 @@ package br.com.alura.leilao.login;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  *
@@ -22,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LoginTest {
        
     private LoginPage page;
-
+    
     @BeforeEach
     public void beforeAll() {
        this.page = new LoginPage();
@@ -34,7 +29,7 @@ public class LoginTest {
     }
 
     @Test
-    public void efetuarLoginCorreto() {
+    public void efetuarLoginCorreto() throws InterruptedException {
         page.preencherFormularioDeUsuario("fulano", "pass");
         page.efetuarLogin();
 
