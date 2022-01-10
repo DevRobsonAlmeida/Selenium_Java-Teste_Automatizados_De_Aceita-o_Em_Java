@@ -39,9 +39,9 @@ public class LoginPage {
         browser.findElement(By.id("password")).sendKeys(password);
     }
 
-    public WebDriver efetuarLogin() {
+    public LeiloesPage efetuarLogin() {
         browser.findElement(By.id("submit")).submit();
-        return browser;
+        return new LeiloesPage(browser);
     }
 
     public String getUsuarioLogado() {

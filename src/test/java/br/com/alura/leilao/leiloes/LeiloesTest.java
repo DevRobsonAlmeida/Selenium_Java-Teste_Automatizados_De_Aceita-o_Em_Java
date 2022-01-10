@@ -27,20 +27,21 @@ public class LeiloesTest {
     }
     
     @Test
-    public void preencherNovoLeilaoCorretamente(){
+    public void preencherNovoLeilaoCorretamente() throws InterruptedException{
 
         LoginPage login = new LoginPage();
-//        Thread.sleep(500);
         login.preencherFormularioDeUsuario("fulano", "pass");
-        this.page = new LeiloesPage(login.efetuarLogin());
-        CadastroLeilaoPage cadastro = new CadastroLeilaoPage(page.carregarFormulario());
+        
+        this.page = login.efetuarLogin();
+        CadastroLeilaoPage cadastro = page.carregarFormulario();
         String hoje = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         String nome = "Leilao do dia" + hoje;
         String valor = "500.00";
         
-
-//        this.page.getWaitTimeInId(nome);
-        this.page = new LeiloesPage(cadastro.preencherNewLeilao(nome, valor, hoje));
-//        Assertions.assertTrue(page.isLeilaoCadastrado(nome, valor, hoje));
+        
+        page.getWaitTimeInId("nome");
+        this.page = cadastro.preencherNewLeilao(nome, valor, hoje);
+        Assertions.assertTrue(page.isLeilaoCadastrado(nome, valor, hoje));
     }
+    
 }

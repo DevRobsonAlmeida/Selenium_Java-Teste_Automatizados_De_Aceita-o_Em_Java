@@ -24,13 +24,13 @@ class CadastroLeilaoPage {
         this.browser.quit();
     }
 
-    public WebDriver preencherNewLeilao(String nome, String valor, String hoje) {
+    public LeiloesPage preencherNewLeilao(String nome, String valor, String hoje) {
         browser.findElement(By.id("nome")).sendKeys(nome);
         browser.findElement(By.id("valorInicial")).sendKeys(valor);
         browser.findElement(By.id("dataAbertura")).sendKeys(hoje);
         browser.findElement(By.id("button-submit")).submit();
         
-        return browser;
+        return new LeiloesPage(browser);
     }
 
 }

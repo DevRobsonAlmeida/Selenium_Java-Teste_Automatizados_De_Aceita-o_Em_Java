@@ -39,9 +39,9 @@ public class LeiloesPage {
        return browser.getCurrentUrl().equals(URL_CADASTRO_LEILAO);
     }
 
-    public WebDriver carregarFormulario() {
+    public CadastroLeilaoPage carregarFormulario() {
        browser.navigate().to(URL_CADASTRO_LEILAO);
-       return browser;
+       return new CadastroLeilaoPage(browser);
     }
     
     public void getWaitTimeInId(String id) {
