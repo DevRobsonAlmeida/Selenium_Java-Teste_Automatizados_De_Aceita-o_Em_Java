@@ -6,6 +6,7 @@
 package br.com.alura.leilao.login;
 
 import br.com.alura.leilao.leiloes.LeiloesPage;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -73,7 +74,6 @@ public class LoginPage {
     }
 
     public void getWaitLoadPage() throws InterruptedException {
-//        browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        
+        browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 }
