@@ -42,7 +42,8 @@ public class LeiloesTest {
 
         Thread.sleep(1000);
         this.page = cadastro.preencherNewLeilao(nome, valor, hoje);
-//        Assertions.assertTrue(page.isLeilaoCadastrado(nome, valor, hoje));
+        Thread.sleep(1000);
+        Assertions.assertTrue(page.isLeilaoCadastrado(nome, valor, hoje));
     }
 
 }
