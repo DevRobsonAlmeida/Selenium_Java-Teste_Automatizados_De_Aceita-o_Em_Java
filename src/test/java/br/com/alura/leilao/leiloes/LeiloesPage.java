@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LeiloesPage {
 
     private static final String URL_CADASTRO_LEILAO = "http://localhost:8081/leiloes/new";
+    private static final String URL_LEILOES = "http://localhost:8081/leiloes";
 
     private WebDriver browser;
     private WebElement wait;
@@ -65,7 +66,12 @@ public class LeiloesPage {
         WebElement colunaValorInicial = linhaDatabela.findElement(By.cssSelector("td:nth-child(3)"));
 
         return colunaNome.getText().equals(nome)
-                && colunaDataAbertura.getText().equals(hoje) && colunaValorInicial.getText().equals(valor);
+                && colunaDataAbertura.getText().equals(hoje) 
+                && colunaValorInicial.getText().equals(valor);
+    }
+
+    boolean isPaginaAtual() {
+        return browser.getCurrentUrl().contentEquals(URL_LEILOES);
     }
 
 }
