@@ -5,34 +5,28 @@
  */
 package br.com.alura.leilao.login;
 
+import br.com.alura.leilao.PageObject;
 import br.com.alura.leilao.leiloes.LeiloesPage;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * @author 99030499
  */
-public class LoginPage {
+public class LoginPage extends PageObject{
 
     private static final String URL_LOGIN = "http://localhost:8081/login";
 
-    private WebDriver browser;
     private WebElement wait;
 
     public LoginPage() {
-        System.setProperty("webdriver.gecko.driver", "drivers/geckodriver.exe");
-        this.browser = new FirefoxDriver();
+        super(null);
         browser.navigate().to(URL_LOGIN);
-    }
-
-    public void fechar() {
-        this.browser.quit();
     }
 
     public void preencherFormularioDeUsuario(String username, String password) {
@@ -43,6 +37,10 @@ public class LoginPage {
     public LeiloesPage efetuarLogin() {
         browser.findElement(By.id("submit")).submit();
         return new LeiloesPage(browser);
+    }
+    
+    public WebDriver getStatusBrowser(){
+        return browser;
     }
 
     public String getUsuarioLogado() {

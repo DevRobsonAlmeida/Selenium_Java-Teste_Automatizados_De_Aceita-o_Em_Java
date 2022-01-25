@@ -5,6 +5,7 @@
  */
 package br.com.alura.leilao.leiloes;
 
+import br.com.alura.leilao.PageObject;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,20 +17,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  *
  * @author 99030499
  */
-public class LeiloesPage {
+public class LeiloesPage extends PageObject{
 
     private static final String URL_CADASTRO_LEILAO = "http://localhost:8081/leiloes/new";
     private static final String URL_LEILOES = "http://localhost:8081/leiloes";
-
-    private WebDriver browser;
+    
     private WebElement wait;
 
     public LeiloesPage(WebDriver browser) {
-        this.browser = browser;
-    }
-
-    public void fechar() {
-        this.browser.quit();
+        super(browser);
     }
 
     public boolean contemTextPage(String descricao) {
@@ -44,19 +40,6 @@ public class LeiloesPage {
     public CadastroLeilaoPage carregarFormulario() {
         browser.navigate().to(URL_CADASTRO_LEILAO);
         return new CadastroLeilaoPage(browser);
-    }
-
-    public void getWaitTimeInId(String id) {
-        wait = (new WebDriverWait(browser, 30)).until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
-
-    }
-    public void getWaitTimeInClass(String classe) {
-        wait = (new WebDriverWait(browser, 30)).until(ExpectedConditions.visibilityOfElementLocated(By.className(classe)));
-
-    }
-
-    void getWaitLoadPage() {
-        browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     boolean isLeilaoCadastrado(String nome, String valor, String hoje) {
